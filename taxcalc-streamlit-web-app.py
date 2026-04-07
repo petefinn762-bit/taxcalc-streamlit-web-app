@@ -26,7 +26,7 @@ st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE
 st.subheader("*Please submit the following information*")
 ####################################################################################################
 #Collect input data
-salary = st.number_input("What is your salary?", step=10000, format="%,.2f", icon=":material/currency_pound:")
+salary = st.number_input("What is your salary?", step=10000, format="%.2f", icon=":material/currency_pound:")
 interest = st.number_input("What income do you receive from bank interest?")
 property_ = st.number_input("What taxable income do you receive from property?")
 benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)")
