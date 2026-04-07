@@ -22,7 +22,7 @@ secondary_threshold = 50270
 tertiary_threshold = 100000
 higher_threshold = 125140
 
-st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE employees] :pound:")
+st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE employees]")
 st.subheader("*Please submit the following information*")
 ####################################################################################################
 #Collect input data
