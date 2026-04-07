@@ -27,7 +27,7 @@ st.subheader("*Please submit the following information*")
 ####################################################################################################
 #Collect input data
 salary = st.number_input("What is your salary?", step=10000, icon=":material/currency_pound:")
-interest = st.number_input("What income do you receive from bank interest?", step=10 icon=":material/currency_pound:")
+interest = st.number_input("What income do you receive from bank interest?", step=10, icon=":material/currency_pound:")
 property_ = st.number_input("What taxable income do you receive from property?", step=1000, icon=":material/currency_pound:")
 benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100, icon=":material/currency_pound:")
 gift_aid = st.number_input("How much have you contributed to charity?", step=10, icon=":material/currency_pound:")
