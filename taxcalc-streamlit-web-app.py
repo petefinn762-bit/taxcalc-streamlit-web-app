@@ -27,10 +27,10 @@ st.subheader("*Please submit the following information*")
 ####################################################################################################
 #Collect input data
 salary = st.number_input("What is your salary?", format="icon=:material/currency_pound")
-interest = st.number_input("What income do you receive from bank interest?"))
-property_ = st.number_input("What taxable income do you receive from property?"))
-benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)"))
-gift_aid = st.number_input("How much have you contributed to charity?"))
+interest = st.number_input("What income do you receive from bank interest?")
+property_ = st.number_input("What taxable income do you receive from property?")
+benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)")
+gift_aid = st.number_input("How much have you contributed to charity?")
 gift_aid_grossed_up = gift_aid * 1.25
 
 ####################################################################################################
