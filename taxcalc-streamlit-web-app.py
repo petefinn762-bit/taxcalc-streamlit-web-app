@@ -39,7 +39,7 @@ gift_aid_grossed_up = gift_aid * 1.25
 salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100, icon=":material/currency_pound:" )
 pension_type = st.radio("What other method do you use to contribute to your pension?", 
                         ["Gross Contribution", "Net contribution", "None"],
-                        captions = "(without tax relief)", "(with 20% tax relief)", " ")
+                        captions = ["(without tax relief)", "(with 20% tax relief)", "",])
 if pension_type == "Gross Contribution":
     pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", icon=":material/percent:")
     pension_gross = pension_gross_pc/100 * salary
