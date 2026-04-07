@@ -23,7 +23,7 @@ tertiary_threshold = 100000
 higher_threshold = 125140
 
 st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE employees]")
-st.subheader("*Please submit the following information:*")
+st.subheader("*Please submit the following information\:*")
 ####################################################################################################
 #Collect input data
 salary = st.number_input("What is your salary?", step=10000, format="%.2f", icon=":material/currency_pound:")
@@ -124,7 +124,7 @@ employer_costs_pc = ((employer_costs / salary) -1) * 100
 
 st.header("**TAX REPORT**", divider=True)
 st.header("1. Take-home pay", divider=True)
-st.write("With an annual net income of £", **net_income**,", you would receive £", money_received_monthly," each month.")
+st.write("With an annual net income of £", net_income,", you would receive £", money_received_monthly," each month.")
 st.write("The total you would receive for the year is £", money_received)
 
 st.header("2. Tax paid", divider=True)
