@@ -23,35 +23,35 @@ tertiary_threshold = 100000
 higher_threshold = 125140
 
 st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE employees]")
-st.subheader("*Please submit the following information*")
+st.subheader("*Please submit the following information:*")
 ####################################################################################################
 #Collect input data
-salary = st.number_input("What is your salary?", step=10000, icon=":material/currency_pound:")
-interest = st.number_input("What income do you receive from bank interest?", step=10, icon=":material/currency_pound:")
-property_ = st.number_input("What taxable income do you receive from property?", step=1000, icon=":material/currency_pound:")
-benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100, icon=":material/currency_pound:")
-gift_aid = st.number_input("How much have you contributed to charity?", step=10, icon=":material/currency_pound:")
+salary = st.number_input("What is your salary?", step=10000, format="%.2f", icon=":material/currency_pound:")
+interest = st.number_input("What income do you receive from bank interest?", step=10, format="%.2f", icon=":material/currency_pound:")
+property_ = st.number_input("What taxable income do you receive from property?", step=1000, format="%.2f", icon=":material/currency_pound:")
+benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100, format="%.2f", icon=":material/currency_pound:")
+gift_aid = st.number_input("How much have you contributed to charity?", step=10, format="%.2f", icon=":material/currency_pound:")
 gift_aid_grossed_up = gift_aid * 1.25
 
 ####################################################################################################
 #Establish if pension contributions are net or gross
 
-salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100, icon=":material/currency_pound:" )
+salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100, format="%.2f", icon=":material/currency_pound:" )
 pension_type = st.radio("What other method do you use to contribute to your pension?", 
                         ["Gross Contribution", "Net contribution", "None"],
                         captions = ["(without tax relief)", "(with 20% tax relief)", "",])
 if pension_type == "Gross Contribution":
-    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", icon=":material/percent:")
+    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", step=1, format="%.1f", icon=":material/percent:")
     pension_gross = pension_gross_pc/100 * salary
 
 elif pension_type == "Net contribution":
-    pension_net_monthly = st.number_input("How much do you contribute each month?", step=100, icon=":material/currency_pound:")
+    pension_net_monthly = st.number_input("How much do you contribute each month?", step=100, format="%.2f", icon=":material/currency_pound:")
     pension_net = pension_net_monthly * 12
     pension_net_grossed_up = pension_net * 1.25
     
 ####################################################################################################
 #Calculate Employer pension contribution
-employer_pension_pc= st.number_input("What percentage of your salary does your employer contribute?", icon=":material/percent:")
+employer_pension_pc= st.number_input("What percentage of your salary does your employer contribute?", step=1, format="%.2f", icon=":material/percent:")
 employer_pension = employer_pension_pc/100 * salary
 pension_total = (salary_sacrifice*12) + pension_gross + pension_net_grossed_up + employer_pension
 
@@ -124,7 +124,7 @@ employer_costs_pc = ((employer_costs / salary) -1) * 100
 
 st.header("**TAX REPORT**", divider=True)
 st.header("1. Take-home pay", divider=True)
-st.write("With an annual net income of £", net_income,", you would receive £", money_received_monthly," each month.")
+st.write("With an annual net income of £", **net_income**,", you would receive £", money_received_monthly," each month.")
 st.write("The total you would receive for the year is £", money_received)
 
 st.header("2. Tax paid", divider=True)
