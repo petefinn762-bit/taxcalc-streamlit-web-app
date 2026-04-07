@@ -1,0 +1,5 @@
+python=3.13.9
+spyder=6.1.0
+matplotlib=3.10.6
+pandas=2.3.3
+streamlit==1.51.0
