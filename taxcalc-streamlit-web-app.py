@@ -2,21 +2,19 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-'''
-Set input variables at 0 (to avoid contamination from previous calculations)
-salary_sacrifice = 0
-benefits = 0
-interest = 0
-property_ = 0
-pension_gross = 0
-pension_net = 0
-pension_net_grossed_up = 0
-excess_pension = 0
-gift_aid_grossed_up = 0
-no_income = 0
-psa = 0
-taxable_interest = 0
-'''
+#Set input variables at 0 (to avoid contamination from previous calculations)
+#salary_sacrifice = 0
+#benefits = 0
+#interest = 0
+#property_ = 0
+#pension_gross = 0
+#pension_net = 0
+#pension_net_grossed_up = 0
+#excess_pension = 0
+#gift_aid_grossed_up = 0
+#no_income = 0
+#psa = 0
+#taxable_interest = 0
 
 #Define HMRC thresholds (which can change from year to year)
 lower_threshold = 12570
