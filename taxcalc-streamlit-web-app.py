@@ -23,7 +23,7 @@ tertiary_threshold = 100000
 higher_threshold = 125140
 
 st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE employees]")
-st.subheader("*Please submit the following information\:*")
+st.subheader("*Please, please submit the following information\:*")
 ####################################################################################################
 #Collect input data
 salary = st.number_input("What is your salary?", step=10000.00, format="%.2f", icon=":material/currency_pound:")
