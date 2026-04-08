@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#Set input variables at 0 (to avoid contamination from previous calculations)
+"""
+Set input variables at 0 (to avoid contamination from previous calculations)
 salary_sacrifice = 0
 benefits = 0
 interest = 0
@@ -15,6 +16,7 @@ gift_aid_grossed_up = 0
 no_income = 0
 psa = 0
 taxable_interest = 0
+"""
 
 #Define HMRC thresholds (which can change from year to year)
 lower_threshold = 12570
@@ -27,21 +29,21 @@ st.subheader("*Please submit the following information\:*")
 ####################################################################################################
 #Collect input data
 salary = st.number_input("What is your salary?", step=10000.00, icon=":material/currency_pound:")
-interest = st.number_input("What income do you receive from bank interest?", step=10.00, format="%.2f", icon=":material/currency_pound:")
-property_ = st.number_input("What taxable income do you receive from property?", step=1000.00, format="%.2f", icon=":material/currency_pound:")
-benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100.00, format="%.2f", icon=":material/currency_pound:")
-gift_aid = st.number_input("How much have you contributed to charity?", step=10.00, format="%.2f", icon=":material/currency_pound:")
+interest = st.number_input("What income do you receive from bank interest?", step=10.00, icon=":material/currency_pound:")
+property_ = st.number_input("What taxable income do you receive from property?", step=1000.00, icon=":material/currency_pound:")
+benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100.00, icon=":material/currency_pound:")
+gift_aid = st.number_input("How much have you contributed to charity?", step=10.00, icon=":material/currency_pound:")
 gift_aid_grossed_up = gift_aid * 1.25
 
 ####################################################################################################
 #Establish if pension contributions are net or gross
 
-salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100.00, format="%.2f", icon=":material/currency_pound:" )
+salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100.00, icon=":material/currency_pound:" )
 pension_type = st.radio("What other method do you use to contribute to your pension?", 
                         ["Gross Contribution", "Net contribution", "None"],
                         captions = ["(without tax relief)", "(with 20% tax relief)", "",])
 if pension_type == "Gross Contribution":
-    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", step=1.0, format="%.1f", icon=":material/percent:")
+    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", step=1.0, icon=":material/percent:")
     pension_gross = pension_gross_pc/100 * salary
 
 elif pension_type == "Net contribution":
