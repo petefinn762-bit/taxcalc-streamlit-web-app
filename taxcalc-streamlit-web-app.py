@@ -49,11 +49,11 @@ st.title(":pound: :red[TAX] :rainbow[SELF-ASSESSMENT CALCULATOR] :green[for PAYE
 st.subheader("*Please submit the following information\:*")
 ####################################################################################################
 #Collect input data
-salary = st.number_input("What is your salary?", step=10000.00, format="%.2f", icon=":material/currency_pound:")
-interest = st.number_input("What income do you receive from bank interest?", step=10.00, format="%.2f", icon=":material/currency_pound:")
-property_ = st.number_input("What taxable income do you receive from property?", step=1000.00, format="%.2f", icon=":material/currency_pound:")
-benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100.00, format="%.2f", icon=":material/currency_pound:")
-gift_aid = st.number_input("How much have you contributed to charity?", step=10.00, format="%.2f", icon=":material/currency_pound:")
+salary = st.number_input("What is your salary?", step=10000.00, icon=":material/currency_pound:")
+interest = st.number_input("What income do you receive from bank interest?", step=10.00, icon=":material/currency_pound:")
+property_ = st.number_input("What taxable income do you receive from property?", step=1000.00, icon=":material/currency_pound:")
+benefits = st.number_input("What benefits in kind do you receive? (e.g. health insurance)", step=100.00, icon=":material/currency_pound:")
+gift_aid = st.number_input("How much have you contributed to charity?", step=10.00, icon=":material/currency_pound:")
 gift_aid_grossed_up = gift_aid * 1.25
 
 ####################################################################################################
