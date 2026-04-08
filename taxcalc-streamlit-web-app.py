@@ -38,6 +38,7 @@ effective_tax_rate = 0
 employer_ni = 0
 employer_costs = 0
 employer_costs_pc = 0
+children = 0
 
 #Define HMRC thresholds (which can change from year to year)
 lower_threshold = 12570
