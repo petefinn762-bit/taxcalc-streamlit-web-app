@@ -227,15 +227,15 @@ if adjusted_net_income <= HICBC_upper_threshold:
                                 placeholder="Choose a number",)
     else: 
         st.write("Thank you for using this calculator!")
-if children == 1:
+if children == "1":
     monthly_cb = 108.20
-elif children == 2: 
+elif children == "2": 
     monthly_cb = 179.80
-elif children == 3: 
+elif children == "3": 
     monthly_cb = 251.40
-elif children == 4: 
+elif children == "4": 
     monthly_cb = 323.00
-elif children == 5: 
+elif children == "5": 
     monthly_cb = 394.60
         
 if adjusted_net_income < HICBC_lower_threshold:
