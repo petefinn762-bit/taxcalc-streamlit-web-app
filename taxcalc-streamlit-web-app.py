@@ -161,13 +161,13 @@ st.write(f"### The total you would receive for the year is £{money_received:,.2
 
 st.header("2. Tax paid", divider=True)
 if tertiary_threshold < adjusted_net_income <= higher_threshold:
-    st.write("Your Adjusted Net Income is £{adjusted_net_income:,.2f}")
+    st.write(f"### Your Adjusted Net Income is £{adjusted_net_income:,.2f}")
     st.write("(for more information about how this was calculated, see below)")
     st.write("As this is between £100,000 and £125,140, I'm afraid you're in the 60% trap!")
     st.write("This means that you lose £1 of your personal allowance for every £2 over £100,000")
     st.write("You could avoid this by increasing your pension contributions or giving more to charity.")
-st.write("""Income Tax: £{inc_tax:,.2f}") n National Insurance: £{national_insurance:,.2f}""")
-st.write("{effective_tax_rate:.2f}% of your total income is paid in tax.")
+st.write(f"""### Income Tax: £{inc_tax:,.2f}") n National Insurance: £{national_insurance:,.2f}""")
+st.write(f"### {effective_tax_rate:.2f}% of your total income is paid in tax.")
 
 st.header("3. Pension contributions", divider=True)
 print("{:.2f}".format(pension_rate)+"% of your salary (£{:,.2f}".format(pension)+") has been put into your pension fund.")
