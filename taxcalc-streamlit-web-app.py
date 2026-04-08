@@ -57,7 +57,7 @@ pension_total = (salary_sacrifice*12) + pension_gross + pension_net_grossed_up +
 
 ####################################################################################################
 #Calculate net income and adjusted net income  
-net_income = salary - (salary_sacrifice*12) + benefits + interest + property_- pension_gross
+net_income = round(salary - (salary_sacrifice*12) + benefits + interest + property_- pension_gross,2)
 adjusted_net_income = round(net_income - pension_net_grossed_up - gift_aid_grossed_up,2)
 
 ####################################################################################################
@@ -110,7 +110,7 @@ elif secondary_threshold < salary_for_ni:
 elif no_income <= salary_for_ni <= lower_threshold:
     national_insurance = 0
     
-money_received = net_income - benefits - pension_net - inc_tax - national_insurance
+money_received = round(net_income - benefits - pension_net - inc_tax - national_insurance, 2)
 money_received_monthly = round(money_received / 12,2)
 pension = pension_net + pension_gross + (salary_sacrifice * 12)
 pension_rate = pension / salary * 100
