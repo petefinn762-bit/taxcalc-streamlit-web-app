@@ -214,35 +214,36 @@ if adjusted_net_income > HICBC_upper_threshold:
     st.write("### You are not eligible for Child Benefit payments.")
     st.write("### Thank you for using this calculator!")
 
-if adjusted_net_income <= HICBC_upper_threshold:
-    while True: 
-        query = st.toggle("You are eligible for Child benefit payments if you have children. Activate to claim.")
-        st.write("Thank you for using this calculator!")
+if adjusted_net_income <= HICBC_upper_threshold: 
+    query = st.toggle("Activate to calculate Child benefit payments")
     if query:
         children = st.selectbox("How many children do you have?",
                                 ("1","2","3","4","5"),
                                 index=None,
                                 placeholder="Choose a number",)
-        if children == 1:
-            monthly_cb = 108.20
-        elif children == 2: 
-            monthly_cb = 179.80
-        elif children == 3: 
-            monthly_cb = 251.40
-        elif children == 4: 
-            monthly_cb = 323.00
-        elif children == 5: 
-            monthly_cb = 394.60
-        if adjusted_net_income < HICBC_lower_threshold:
-            st.write(f"You will also receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f}")
-            st.write("Thank you for using this calculator!")
-        if HICBC_lower_threshold < adjusted_net_income <= HICBC_upper_threshold:
-            HICBC = (adjusted_net_income - HICBC_lower_threshold) // 200
-            child_benefit_repayment = (monthly_cb * 13) * HICBC / 100
-            st.write(f"Although you will receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f} per year, you will have to pay back {HICBC:.2f}% per year of your child benefit (£{child_benefit_repayment:,.2f}, leaving you with £{((monthly_cb * 13) - child_benefit_repayment):.2f} for the year or £{(((monthly_cb * 13) - child_benefit_repayment)/13):.2f} every 4 weeks.")
-            st.write("Thank you for using this calculator!")
     else: 
         st.write("Thank you for using this calculator!")
+if children == 1:
+    monthly_cb = 108.20
+elif children == 2: 
+    monthly_cb = 179.80
+elif children == 3: 
+    monthly_cb = 251.40
+elif children == 4: 
+    monthly_cb = 323.00
+elif children == 5: 
+    monthly_cb = 394.60
+        
+if adjusted_net_income < HICBC_lower_threshold:
+    st.write(f"You will also receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f}")
+    st.write("Thank you for using this calculator!")
+        
+if HICBC_lower_threshold < adjusted_net_income <= HICBC_upper_threshold:
+    HICBC = (adjusted_net_income - HICBC_lower_threshold) // 200
+    child_benefit_repayment = (monthly_cb * 13) * HICBC / 100
+    st.write(f"Although you will receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f} per year, you will have to pay back {HICBC:.2f}% per year of your child benefit (£{child_benefit_repayment:,.2f}, leaving you with £{((monthly_cb * 13) - child_benefit_repayment):.2f} for the year or £{(((monthly_cb * 13) - child_benefit_repayment)/13):.2f} every 4 weeks.")
+    st.write("Thank you for using this calculator!")
+    
 
 
         
