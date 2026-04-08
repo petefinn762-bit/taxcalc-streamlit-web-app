@@ -3,18 +3,41 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #Set input variables at 0 (to avoid contamination from previous calculations)
-#salary_sacrifice = 0
-#benefits = 0
-#interest = 0
-#property_ = 0
-#pension_gross = 0
-#pension_net = 0
-#pension_net_grossed_up = 0
-#excess_pension = 0
-#gift_aid_grossed_up = 0
-#no_income = 0
-#psa = 0
-#taxable_interest = 0
+salary = 0
+salary_sacrifice = 0
+benefits = 0
+interest = 0
+property_ = 0
+pension_gross = 0
+pension_gross_pc = 0
+pension_net = 0
+pension_net_grossed_up = 0
+pension_net_monthly = 0
+excess_pension = 0
+employer_pension = 0
+employer_pension_pc = 0
+employer_total = 0
+gift_aid = 0
+gift_aid_grossed_up = 0
+net_income = 0
+adjusted_net_income = 0
+no_income = 0
+psa = 0
+taxable_interest = 0
+taxable_income = 0
+inc_tax = 0
+reduced_allowance = 0
+tax_relief_claim = 0
+salary_for_ni = 0
+national_insurance = 0
+money_received = 0
+money_received_monthly = 0
+pension = 0
+pension_rate = 0
+effective_tax_rate = 0
+employer_ni = 0
+employer_costs = 0
+employer_costs_pc = 0
 
 #Define HMRC thresholds (which can change from year to year)
 lower_threshold = 12570
