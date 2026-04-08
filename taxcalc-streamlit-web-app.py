@@ -136,7 +136,10 @@ elif no_income <= salary_for_ni <= lower_threshold:
 money_received = round(net_income - benefits - pension_net - inc_tax - national_insurance, 2)
 money_received_monthly = round(money_received / 12,2)
 pension = pension_net + pension_gross + (salary_sacrifice * 12)
-pension_rate = pension / salary * 100
+try:
+  pension_rate = pension / salary * 100
+except ZeroDivisionError:
+  pension_rate = 0
 effective_tax_rate = (net_income - money_received + pension) / (net_income + pension) *100
 employer_ni = (salary_for_ni - 5000) * 0.15
 employer_costs = salary + employer_ni + employer_pension + benefits
