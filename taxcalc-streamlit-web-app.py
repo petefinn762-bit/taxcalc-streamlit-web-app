@@ -59,22 +59,22 @@ gift_aid_grossed_up = gift_aid * 1.25
 ####################################################################################################
 #Establish if pension contributions are net or gross
 
-salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100.00, format="%.2f", icon=":material/currency_pound:" )
+salary_sacrifice = st.number_input("How much do you contribute to your pension via salary sacrifice each month? (type 0 if nothing)", step=100.00, icon=":material/currency_pound:" )
 pension_type = st.radio("What other method do you use to contribute to your pension?", 
                         ["Gross Contribution", "Net contribution", "None"],
                         captions = ["(without tax relief)", "(with 20% tax relief)", "",])
 if pension_type == "Gross Contribution":
-    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", step=1.0, format="%.1f", icon=":material/percent:")
+    pension_gross_pc = st.number_input("What percentage of your salary do you contribute?", step=1.0, icon=":material/percent:")
     pension_gross = pension_gross_pc/100 * salary
 
 elif pension_type == "Net contribution":
-    pension_net_monthly = st.number_input("How much do you contribute each month?", step=100.00, format="%.2f", icon=":material/currency_pound:")
+    pension_net_monthly = st.number_input("How much do you contribute each month?", step=100.00, icon=":material/currency_pound:")
     pension_net = pension_net_monthly * 12
     pension_net_grossed_up = pension_net * 1.25
     
 ####################################################################################################
 #Calculate Employer pension contribution
-employer_pension_pc= st.number_input("What percentage of your salary does your employer contribute?", step=1.0, format="%.1f", icon=":material/percent:")
+employer_pension_pc= st.number_input("What percentage of your salary does your employer contribute?", step=1.0, icon=":material/percent:")
 employer_pension = employer_pension_pc/100 * salary
 pension_total = (salary_sacrifice*12) + pension_gross + pension_net_grossed_up + employer_pension
 
@@ -105,9 +105,9 @@ taxable_income = net_income - interest + taxable_interest + excess_pension
 if no_income <= taxable_income <= lower_threshold:
     inc_tax = 0
 elif lower_threshold < taxable_income <= secondary_threshold:
-    inc_tax = round((taxable_income - lower_threshold) * .2,2)
+    inc_tax = (taxable_income - lower_threshold) * .2
 elif secondary_threshold < taxable_income <= higher_threshold:
-    inc_tax = round(7540 + ((taxable_income - secondary_threshold) * .4),2)
+    inc_tax = 7540 + ((taxable_income - secondary_threshold) * .4)
     if tertiary_threshold < adjusted_net_income <= higher_threshold:
         reduced_allowance = (adjusted_net_income - tertiary_threshold) / 2
         inc_tax = inc_tax + (reduced_allowance * .4)
@@ -117,7 +117,7 @@ elif secondary_threshold < taxable_income <= higher_threshold:
         elif taxable_income - pension_net_grossed_up > secondary_threshold:
             tax_relief_claim = pension_net_grossed_up *.2
 elif higher_threshold < taxable_income:
-    inc_tax = round(7540+19892+15084+((taxable_income - higher_threshold) * .45),2)
+    inc_tax = 7540+19892+15084+((taxable_income - higher_threshold) * .45)
     if pension_type == 2:
         if taxable_income - pension_net_grossed_up <= higher_threshold:
             tax_relief_claim = (pension_net_grossed_up - (higher_threshold - (taxable_income - pension_net_grossed_up)))*.25 + (higher_threshold - (taxable_income - pension_net_grossed_up))*.2
@@ -127,9 +127,9 @@ elif higher_threshold < taxable_income:
 #National Insurance calculation
 salary_for_ni = salary - (salary_sacrifice * 12)
 if lower_threshold < salary_for_ni <= secondary_threshold:
-    national_insurance = round((salary_for_ni-lower_threshold) * .08,2)
+    national_insurance = (salary_for_ni-lower_threshold) * .08
 elif secondary_threshold < salary_for_ni:
-    national_insurance = round(3016 + ((salary_for_ni-secondary_threshold) * .02),2)
+    national_insurance = 3016 + ((salary_for_ni-secondary_threshold) * .02)
 elif no_income <= salary_for_ni <= lower_threshold:
     national_insurance = 0
     
@@ -161,13 +161,13 @@ st.write(f"### The total you would receive for the year is £{money_received:,.2
 
 st.header("2. Tax paid", divider=True)
 if tertiary_threshold < adjusted_net_income <= higher_threshold:
-    print("\nYour Adjusted Net Income is £{:,.2f}".format(adjusted_net_income))
-    print("(for more information about how this was calculated, see below)")
-    print("As this is between £100,000 and £125,140, I'm afraid you're in the 60% trap!")
-    print("This means that you lose £1 of your personal allowance for every £2 over £100,000")
-    print("You could avoid this by increasing your pension contributions or giving more to charity.")
-print("\nIncome Tax: £{:,.2f}".format(inc_tax)+"\nNational Insurance: £{:,.2f}".format(national_insurance))
-print("\n{:.2f}".format(effective_tax_rate)+"% of your total income is paid in tax.")
+    st.write("Your Adjusted Net Income is £{adjusted_net_income:,.2f}")
+    st.write("(for more information about how this was calculated, see below)")
+    st.write("As this is between £100,000 and £125,140, I'm afraid you're in the 60% trap!")
+    st.write("This means that you lose £1 of your personal allowance for every £2 over £100,000")
+    st.write("You could avoid this by increasing your pension contributions or giving more to charity.")
+st.write("Income Tax: £{inc_tax:,.2f}"\nNational Insurance: £{national_insurance:,.2f}")
+st.write("{effective_tax_rate:.2f}% of your total income is paid in tax.")
 
 st.header("3. Pension contributions", divider=True)
 print("{:.2f}".format(pension_rate)+"% of your salary (£{:,.2f}".format(pension)+") has been put into your pension fund.")
