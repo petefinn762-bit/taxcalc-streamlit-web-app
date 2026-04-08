@@ -140,10 +140,16 @@ try:
   pension_rate = pension / salary * 100
 except ZeroDivisionError:
   pension_rate = 0
-effective_tax_rate = (net_income - money_received + pension) / (net_income + pension) *100
+try:
+  effective_tax_rate = (net_income - money_received + pension) / (net_income + pension) *100
+except ZeroDivisionError:
+  effective_tax_rate = 0
 employer_ni = (salary_for_ni - 5000) * 0.15
 employer_costs = salary + employer_ni + employer_pension + benefits
-employer_costs_pc = ((employer_costs / salary) -1) * 100
+try:
+  employer_costs_pc = ((employer_costs / salary) -1) * 100
+except ZeroDivisionError:
+  employer_costs_pc = 0
 
 ####################################################################################################
 #Tax Report
