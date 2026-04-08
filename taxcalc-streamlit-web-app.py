@@ -166,7 +166,7 @@ if tertiary_threshold < adjusted_net_income <= higher_threshold:
     st.write("As this is between £100,000 and £125,140, I'm afraid you're in the 60% trap!")
     st.write("This means that you lose £1 of your personal allowance for every £2 over £100,000")
     st.write("You could avoid this by increasing your pension contributions or giving more to charity.")
-st.write(f"### Income Tax: £{inc_tax:,.2f}"
+st.write(f"### Income Tax: £{inc_tax:,.2f}")
 st.write(f"### National Insurance: £{national_insurance:,.2f}")
 st.write(f"### {effective_tax_rate:.2f}% of your total income is paid in tax.")
 
@@ -216,7 +216,7 @@ if adjusted_net_income > HICBC_upper_threshold:
 
 if adjusted_net_income <= HICBC_upper_threshold:
     while True: 
-        query = st.toggle("You are eligible for Child benefit payments if you have children. Activate to claim."
+        query = st.toggle("You are eligible for Child benefit payments if you have children. Activate to claim.")
         st.write("Thank you for using this calculator!")
     if query:
         children = st.selectbox("How many children do you have?",
