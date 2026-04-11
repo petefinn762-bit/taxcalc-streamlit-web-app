@@ -160,7 +160,7 @@ except ZeroDivisionError:
 
 st.header("**TAX REPORT**", divider=True)
 st.header("1. Take-home pay", divider=True)
-st.write(f"With an annual net income of £{net_income:,.2f} you would receive £{money_received_monthly:,.2f} each month.")
+st.write(f"With an annual net income of \033[1m £{net_income:,.2f}\033[0m you would receive \033[1m £{money_received_monthly:,.2f}\033[0m each month.")
 st.write(f"The total you would receive for the year is £{money_received:,.2f}")
 
 st.header("2. Tax paid", divider=True)
