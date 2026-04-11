@@ -221,6 +221,7 @@ if adjusted_net_income > HICBC_upper_threshold:
 if adjusted_net_income <= HICBC_upper_threshold: 
     query = st.toggle("Activate to calculate Child benefit payments")
     if query:
+      #perhaps I could use a while loop so that it only continues when the number of children is entered.
         children = st.selectbox("How many children do you have?",
                                 ("1","2","3","4","5"),
                                 index=None,
