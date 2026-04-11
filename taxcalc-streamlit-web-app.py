@@ -160,24 +160,24 @@ except ZeroDivisionError:
 
 st.header("**TAX REPORT**", divider=True)
 st.header("1. Take-home pay", divider=True)
-st.write(f"### With an annual net income of £{net_income:,.2f} you would receive £{money_received_monthly:,.2f} each month.")
-st.write(f"### The total you would receive for the year is £{money_received:,.2f}")
+st.write(f"With an annual net income of £{net_income:,.2f} you would receive £{money_received_monthly:,.2f} each month.")
+st.write(f"The total you would receive for the year is £{money_received:,.2f}")
 
 st.header("2. Tax paid", divider=True)
 if tertiary_threshold < adjusted_net_income <= higher_threshold:
-    st.write(f"### Your Adjusted Net Income is £{adjusted_net_income:,.2f}")
+    st.write(f"Your Adjusted Net Income is £{adjusted_net_income:,.2f}")
     st.write("(for more information about how this was calculated, see below)")
     st.write("As this is between £100,000 and £125,140, I'm afraid you're in the 60% trap!")
     st.write("This means that you lose £1 of your personal allowance for every £2 over £100,000")
     st.write("You could avoid this by increasing your pension contributions or giving more to charity.")
-st.write(f"### Income Tax: £{inc_tax:,.2f}")
-st.write(f"### National Insurance: £{national_insurance:,.2f}")
-st.write(f"### {effective_tax_rate:.2f}% of your total income is paid in tax.")
+st.write(f"Income Tax: £{inc_tax:,.2f}")
+st.write(f"National Insurance: £{national_insurance:,.2f}")
+st.write(f"{effective_tax_rate:.2f}% of your total income is paid in tax.")
 
 st.header("3. Pension contributions", divider=True)
-st.write(f"### {pension_rate:.2f}% of your salary (£{pension:,.2f}) has been put into your pension fund.")
-st.write(f"### Your employer has contributed a further £{employer_pension:,.2f}")
-st.write(f"### Therefore, £{pension_total:,.2f} will be put into your pension pot this year.")
+st.write(f"{pension_rate:.2f}% of your salary (£{pension:,.2f}) has been put into your pension fund.")
+st.write(f"Your employer has contributed a further £{employer_pension:,.2f}")
+st.write(f"Therefore, £{pension_total:,.2f} will be put into your pension pot this year.")
 if pension_total > 60000:
     st.write(f"However, only £60,000 can be contributed to your pension pot tax-free, so an additional £{excess_pension:,.2f} was added to your taxable income and included in the calculations above.")
 if secondary_threshold < taxable_income <= higher_threshold:
@@ -198,11 +198,11 @@ elif higher_threshold < taxable_income:
             tax_relief_claim = pension_net_grossed_up *.25
         st.write(f"You can claim £{tax_relief_claim:,.2f}")
 st.header("4. Employer contributions", divider=True)
-st.write(f"### Pension contribution: £{employer_pension:,.2f}")
-st.write(f"### National Insurance contribution: £{employer_ni:,.2f}")
-st.write(f"### Employer benefits: £{benefits:,.2f}")
-st.write(f"### Therefore, your employer has spent £{employer_costs:,.2f}")
-st.write(f"### This is {employer_costs_pc:.2f}% more than your salary alone")
+st.write(f"Pension contribution: £{employer_pension:,.2f}")
+st.write(f"National Insurance contribution: £{employer_ni:,.2f}")
+st.write(f"Employer benefits: £{benefits:,.2f}")
+st.write(f"Therefore, your employer has spent £{employer_costs:,.2f}")
+st.write(f"This is {employer_costs_pc:.2f}% more than your salary alone")
 
 st.write("NB Your Adjusted Net Income takes into account pension contributions and charitable giving to achieve the following:")
 st.write(" - if you earn just over £50,270, it preserves your £1000 Personal Savings Allowance")
@@ -215,8 +215,8 @@ HICBC_upper_threshold = 80000
 
 st.header("4. Child Benefit", divider=True)
 if adjusted_net_income > HICBC_upper_threshold:
-    st.write("### You are not eligible for Child Benefit payments.")
-    st.write("### Thank you for using this calculator!")
+    st.write("You are not eligible for Child Benefit payments.")
+    st.write("Thank you for using this calculator!")
 
 if adjusted_net_income <= HICBC_upper_threshold: 
     query = st.toggle("Activate to calculate Child benefit payments")
@@ -225,30 +225,29 @@ if adjusted_net_income <= HICBC_upper_threshold:
                                 ("1","2","3","4","5"),
                                 index=None,
                                 placeholder="Choose a number",)
+        if children == "1":
+            monthly_cb = 108.20
+        elif children == "2": 
+            monthly_cb = 179.80
+        elif children == "3": 
+            monthly_cb = 251.40
+        elif children == "4": 
+            monthly_cb = 323.00
+        elif children == "5": 
+            monthly_cb = 394.60
+    
+        if adjusted_net_income < HICBC_lower_threshold:
+            st.write(f"You will also receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f}")
+            st.write("Thank you for using this calculator!")
+        
+        if HICBC_lower_threshold < adjusted_net_income <= HICBC_upper_threshold:
+            HICBC = (adjusted_net_income - HICBC_lower_threshold) // 200
+            child_benefit_repayment = (monthly_cb * 13) * HICBC / 100
+            st.write(f"Although you will receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f} per year, you will have to pay back {HICBC:.2f}% per year of your child benefit (£{child_benefit_repayment:,.2f}, leaving you with £{((monthly_cb * 13) - child_benefit_repayment):.2f} for the year or £{(((monthly_cb * 13) - child_benefit_repayment)/13):.2f} every 4 weeks.")
+            st.write("Thank you for using this calculator!")
+    
     else: 
         st.write("Thank you for using this calculator!")
-if children == "1":
-    monthly_cb = 108.20
-elif children == "2": 
-    monthly_cb = 179.80
-elif children == "3": 
-    monthly_cb = 251.40
-elif children == "4": 
-    monthly_cb = 323.00
-elif children == "5": 
-    monthly_cb = 394.60
-        
-if adjusted_net_income < HICBC_lower_threshold:
-    st.write(f"You will also receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f}")
-    st.write("Thank you for using this calculator!")
-        
-if HICBC_lower_threshold < adjusted_net_income <= HICBC_upper_threshold:
-    HICBC = (adjusted_net_income - HICBC_lower_threshold) // 200
-    child_benefit_repayment = (monthly_cb * 13) * HICBC / 100
-    st.write(f"Although you will receive 13 payments of £{monthly_cb:.2f}, which amounts to £{(monthly_cb * 13):.2f} per year, you will have to pay back {HICBC:.2f}% per year of your child benefit (£{child_benefit_repayment:,.2f}, leaving you with £{((monthly_cb * 13) - child_benefit_repayment):.2f} for the year or £{(((monthly_cb * 13) - child_benefit_repayment)/13):.2f} every 4 weeks.")
-    st.write("Thank you for using this calculator!")
-    
-
 
         
 
